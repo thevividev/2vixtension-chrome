@@ -4,7 +4,6 @@ let previousData = {
     "lastLive": null,
     "title": ""
 }
-setPreviousData();
 
 setInterval(async () => {
     getPreviousData()
@@ -12,8 +11,9 @@ setInterval(async () => {
     let response = await fetch(api_url);
     let data = await response.json();
 
+
     if (shouldSendNotification(previousData, data)) {
-        setPreviousData();
+        setPreviousData(data);
 
         chrome.notifications.create({
             "type": "basic",
@@ -30,14 +30,19 @@ chrome.notifications.onClicked.addListener(function(event){
 
 function getPreviousData() {
     chrome.storage.sync.get("thevivi", (result) => {
-        previousData = result.thevivi;
+        previousData = result.thevivi || previousData;
     });
 }
 
-function setPreviousData() {
+function setPreviousData(data) {
+    previousData = data;
     chrome.storage.sync.set({thevivi: previousData});
 }
 
 function shouldSendNotification(previousData, data) {
+    if (previousData.lastLive == null) {
+        return true
+    }
+
     return data.isLive && !previousData.isLive && (data.lastLive !== previousData.lastLive);
 }
