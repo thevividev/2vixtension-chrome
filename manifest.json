@@ -13,7 +13,6 @@
   },
   "permissions": [
     "notifications",
-    "webRequest",
     "storage"
   ],
   "host_permissions": [
