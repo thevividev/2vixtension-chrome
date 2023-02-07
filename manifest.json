@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "2VIxtension",
-  "description": "Get notified when TheVivi is streaming",
+  "description": "Notifications quand TheVivi est en live",
   "version": "1.0.0",
   "icons": {
     "16": "/assets/16.png",
