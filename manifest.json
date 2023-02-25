@@ -16,6 +16,7 @@
     "storage"
   ],
   "host_permissions": [
-    "https://bretheskevin.fr/public-api/thevivi/is-streaming"
+    "wss://bretheskevin.fr/",
+    "ws://bretheskevin.fr:4001/"
   ]
 }
